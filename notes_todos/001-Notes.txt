@@ -1,0 +1,61 @@
+1. In the first video the tutor showed us how to map our site with the host file.
+TODO: See this video and set it up.
+
+2. app/config contains our applications configurations
+For example app/config/parameters.yml contains our database and mail settings.
+
+app/config/routing.yml defines our routing parameters.
+It defines the resource: "@AppBundle/Controller", so the resource for our controllers are found in the folder src/AppBundle/Controller and we will use annotations to define our routes.
+
+3. app/Resources contains the views folder
+		app/Resources/views contains the 
+		 - default/index.html.twig file which is the default welcome screen we get when we run the app for the first time after installation.
+		 - base.html.twig file which is the layout file - It surrounds our views.
+		 {% block body %}{% endblock %} => This is where our views are replaced.
+
+Twig is the default templating engin that Symfony uses.
+
+4. We will never work in bin but we use the command php bin/console server:run localhost:8080 to start the built-in PHP server.
+
+5. src contains our bundles - isolated reusable code
+   - controller/DefaultController.php has an indexAction, with a request parameter.
+   It finally renders our view, the index template.
+ 	/**
+     * @Route("/", name="homepage")
+     */
+    
+    This means that the route for our indexAction is / and internally we can reference the route using homepage
+
+   - The src folder will also contain our model entities here (we will create a folder for them).
+
+
+ 6. As our app is a small app, we will use the AppBundle for our demo app's bundle.
+
+ a. Create a controller in the AppBundle/Controller folder called TodoController and copy the code of the DefaultController.
+ 	- Rename the class and define the route as :
+
+ 	/**
+     * @Route("/todos", name="todo_list")
+     */
+    public function indexAction(Request $request)
+    {
+    	//This is for testing
+        //die('Yovan is rocking');
+        // replace this example code with whatever you need
+        return $this->render('todo/index.html.twig');
+    }
+
+    - This implies that our indexAction points to /todos and we internally can reference the route using todo_list.
+    We can change the name of our indexAction to listAction and this will still work.
+    
+    Recap: As we saw previously, in the app/config/routing.yml, we have defined our resource, so Symfony knows where to search for our controllers.
+    
+    - The page to be rendered is todo/index.html.twig and we don't need any values that we wan to pass to our view.
+	As we have not created our view yet for testing purposes we can use die('The todo list is shown successfully'); and navigate to localhost:8080/todos
+
+    - Create our index.html.twig view in app/Resources/views/todo/ new folder.
+
+    - We create our create, edit and details view and add the corresponding actions in our TodoController.
+
+
+

@@ -1,0 +1,61 @@
+1. We will add bootstrap to style our application.
+
+Copy the source code for the starter template and copy below in the base.html.twig folder.
+ - Copy and replace bootstrap code with the dynamic title, favicon ref and our stylesheets block and get rid of everything that's below in the head.
+ - Delete the  template div inside the .container div and unnecessary JS references below.
+ - Replace our body block as below:
+ <div class="container">
+	<div class="row">
+	    <div class="col-md-12">
+	        {% block body %}{% endblock %}
+	    </div>    
+	</div>
+</div>
+ - Place our JS block below the jQuery reference.
+ - We can now remove the old base code.
+ - In the nav bar, we change the Project name to Todo List.
+   - href of Home is relaced from # to /. We will make our /todos the homepage.
+   - We add our Add Todo navigation element and delete any old bootstrap entries in the nav bar.
+
+- Replace the relative entry of bootstrap by a CDN.
+We can also download bootstrap and unzip it in our web folder. 
+<link rel="icon" type="image/x-icon" href="{{ asset('bootstrap/css/bootstrap.min.css') }}" />
+
+Manually downloading our files is a very bad pratice. TODO: 
+http://symfony.com/doc/current/frontend/bower.html
+http://symfony.com/doc/current/best_practices/web-assets.html
+https://symfony.com/doc/3.1/assetic/asset_management.html
+
+If we refresh our page, we still don't have bootstrap enabled for our views. 
+Our views must extend the base.html.twig view and their content must be between the body block.
+- We remove the navbar-fixed-top and class="active" and refresh. We should see our styled views now.
+
+- To route our listAction to / we should modify /todos to / in our TodoController and remove the route in the DefaultController.
+
+- Add the bootstap striped table in todo/index.html.twig file and edit the table so that we can have View, Edit and Delete buttons.
+
+Note: When we create forms using Symfony, most of our code goes into our Controller and only the references go inside our views.
+
+2. Creating our Entity
+
+TODO: https://symfony.com/doc/3.1/doctrine.html
+http://docs.doctrine-project.org/projects/doctrine-orm/en/latest/index.html
+
+a. Set our database settings in parameters.yml
+b. php bin/console doctrine:database:create 
+c. php bin/console doctrine:generate:entity
+	The Entity shortcut name: AppBundle:Todo
+	Configuration format (yml, xml, php, or annotation) [annotation]: Enter to set the default
+	New field name (press <return> to stop adding fields): creation_date
+		Field type [string]: datetime
+		datetimetz
+		Is nullable [false]:
+
+		Unique [false]:
+
+etc
+
+This command creates a Todo.php class in AppBundle/Entity with its getters and setters.
+
+d. Create the actual tables with the fields
+php bin/console doctrine:schema:update --force

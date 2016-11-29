@@ -1,0 +1,13 @@
+1. We will fetch data from the DB.
+ - We will use doctrine to get Todo records from the database. So we have to include the class with use.
+ - We pass the $todos array to our view for rendering
+
+ - In our index.html.twig file we loop through our records to display our records.
+
+2. When we click on Add Todo in the nav-bar, we are redirected the create page which contains a form to create a new Todo item. Most of the Form creation is done in the createAction of the TodoController.
+
+
+
+2. When we click on a edit, we are redirected to the /todo/edit route.
+
+			
