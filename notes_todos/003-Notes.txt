@@ -6,8 +6,6 @@
 
 2. When we click on Add Todo in the nav-bar, we are redirected the create page which contains a form to create a new Todo item. Most of the Form creation is done in the createAction of the TodoController.
 
-
-
 2. When we click on a edit, we are redirected to the /todo/edit route.
 
 			
